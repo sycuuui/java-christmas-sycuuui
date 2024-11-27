@@ -6,8 +6,9 @@ public class Order {
     private Menu menu;
     private int quantity;
 
-    public Order(Menu menu, int quantity) {
-        this.menu = menu;
+    public Order(String name, int quantity) {
+        this.menu = Menu.findMenuByName(name);
         this.quantity = quantity;
     }
+
 }
