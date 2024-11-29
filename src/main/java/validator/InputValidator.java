@@ -1,6 +1,6 @@
 package validator;
 
-import enumerate.Menu;
+import enumerate.menu.Menu;
 import exception.CustomException;
 import message.ErrorMessage;
 
@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static enumerate.EventConstant.*;
+import static enumerate.event.EventConstant.*;
 
 public class InputValidator {
     public void validatorVisitDate(String input) {
@@ -80,13 +80,13 @@ public class InputValidator {
     }
 
     private void checkInQuantityRange(Integer value) {
-        if (value < EVENT_MIN_ORDER.value()) {
+        if (value < EVENT_MIN_ORDER.getValue()) {
             throw new CustomException(ErrorMessage.INVALID_ORDER);
         }
     }
 
     private void checkInTotalQuantityRange(int totalQuantity) {
-        if (totalQuantity > EVENT_MAX_ORDER.value()) {
+        if (totalQuantity > EVENT_MAX_ORDER.getValue()) {
             throw new CustomException(ErrorMessage.INVALID_ORDER);
         }
     }

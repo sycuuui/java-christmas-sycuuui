@@ -1,4 +1,4 @@
-package enumerate;
+package enumerate.event;
 
 public enum EventConstant {
     D_DAY_DISCOUNT_INIT_VALUE(1000),
@@ -18,7 +18,8 @@ public enum EventConstant {
     EVENT_MAX_DATE(31),
     EVENT_MIN_ORDER(1),
     EVENT_MAX_ORDER(20),
-    EVENT_MIN_PRICE(10000);
+    EVENT_MIN_PRICE(10000),
+    NO_EVENT_VALUE(0);
 
     private final int value;
 
@@ -26,7 +27,7 @@ public enum EventConstant {
         this.value = value;
     }
 
-    public int value() {
-        return value;
+    public int getValue() {
+        return this.value;
     }
 }

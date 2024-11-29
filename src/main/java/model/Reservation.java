@@ -1,8 +1,15 @@
 package model;
 
+import enumerate.event.WeekEvent;
+import enumerate.menu.Menu;
+import enumerate.menu.MenuGroup;
+import util.DateUtil;
+
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Reservation {
@@ -15,11 +22,25 @@ public class Reservation {
     }
 
     public void setVisitDate(int visitDay) {
-        this.visitDate = LocalDate.of(2024,12,visitDay);
+        this.visitDate = LocalDate.of(2024, 12, visitDay);
     }
 
     public void addOrder(Order order) {
         orders.add(order);
+    }
+
+    private DayOfWeek getDayOfWeek() {
+        return DateUtil.DateToDayConverter(visitDate);
+    }
+
+    private int getWeekEventPrice(Order order) {
+        return WeekEvent.getWeekEventPrice(getDayOfWeek(), order.getMenuGroup());
+    }
+
+    public int getTotalWeekEventPrice() {
+        return orders.stream()
+                .mapToInt(this::getWeekEventPrice)
+                .sum();
     }
 
     public int totalOrderPrice() {
@@ -34,6 +55,6 @@ public class Reservation {
     }
 
     public int calcaulateUntilChristmasDate(LocalDate startDate) {
-        return (int) ChronoUnit.DAYS.between(startDate,visitDate);
+        return (int) ChronoUnit.DAYS.between(startDate, visitDate);
     }
 }

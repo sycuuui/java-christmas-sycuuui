@@ -1,6 +1,7 @@
 package model;
 
-import enumerate.Menu;
+import enumerate.menu.Menu;
+import enumerate.menu.MenuGroup;
 
 public class Order {
     private Menu menu;
@@ -13,5 +14,9 @@ public class Order {
 
     public int orderPrice() {
         return menu.getPrice() * quantity;
+    }
+
+    public MenuGroup getMenuGroup() {
+        return MenuGroup.findMenuGroupByMenu(menu);
     }
 }

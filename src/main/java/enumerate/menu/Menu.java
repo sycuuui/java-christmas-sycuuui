@@ -1,4 +1,4 @@
-package enumerate;
+package enumerate.menu;
 
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", 6000),
