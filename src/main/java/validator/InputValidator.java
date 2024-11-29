@@ -10,6 +10,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static enumerate.EventConstant.*;
+
 public class InputValidator {
     public void validatorVisitDate(String input) {
         if (input.isEmpty()) throw new CustomException(ErrorMessage.INVALID_DATE);
@@ -78,13 +80,13 @@ public class InputValidator {
     }
 
     private void checkInQuantityRange(Integer value) {
-        if (value < 1) {
+        if (value < EVENT_MIN_ORDER.value()) {
             throw new CustomException(ErrorMessage.INVALID_ORDER);
         }
     }
 
     private void checkInTotalQuantityRange(int totalQuantity) {
-        if (totalQuantity > 20) {
+        if (totalQuantity > EVENT_MAX_ORDER.value()) {
             throw new CustomException(ErrorMessage.INVALID_ORDER);
         }
     }

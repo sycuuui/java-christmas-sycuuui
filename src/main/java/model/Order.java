@@ -11,4 +11,7 @@ public class Order {
         this.quantity = quantity;
     }
 
+    public int orderPrice() {
+        return menu.getPrice() * quantity;
+    }
 }

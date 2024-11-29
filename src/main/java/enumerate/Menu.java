@@ -22,6 +22,14 @@ public enum Menu {
         this.price = price;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     public static Menu findMenuByName(String name) {
         return Menu.valueOf(name);
     }
