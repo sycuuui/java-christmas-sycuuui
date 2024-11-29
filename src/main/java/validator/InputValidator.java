@@ -77,7 +77,7 @@ public class InputValidator {
     private void checkInMenu(String key) {
         Menu menu = Menu.findMenuByName(key);
 
-        if (menu == null) {
+        if (menu.equals(Menu.INVALID)) {
             throw new CustomException(ErrorMessage.INVALID_ORDER);
         }
     }

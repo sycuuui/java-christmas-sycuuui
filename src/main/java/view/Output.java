@@ -35,21 +35,25 @@ public class Output {
 
     private void printHeader() {
         System.out.println(outputHandler.getHeaderMessage(reservation.getVisitMonth(), reservation.getVisitDay()));
+        System.out.println();
     }
 
     private void printOrderMenu() {
+        System.out.println(HEADER_ORDER_MENU.get());
         for (Order order : reservation.getOrders()) {
             String message = outputHandler.getNoticeMenuMessage(order.getMenuName(), order.getQuantity());
 
             System.out.println(message);
         }
+        System.out.println();
     }
 
     private void printTotalPriceBeforeEvent() {
         System.out.println(HEADER_TOTAL_PRICE_BEFORE_EVENT.get());
 
         int total = reservation.totalOrderPrice();
-        System.out.println(outputHandler.getNoticeEventPriceMessage(total));
+        System.out.println(outputHandler.getNoticePriceMessage(total));
+        System.out.println();
     }
 
     private void printGift() {
@@ -57,9 +61,11 @@ public class Output {
 
         if (eventService.isConditionGift()) {
             System.out.println(outputHandler.getNoticeMenuMessage(CHAMPAGNE.getName(), GIFT_VALUE.get()));
+            System.out.println();
             return;
         }
         System.out.println(NOTICE_NO_EVENT.get());
+        System.out.println();
     }
 
     private void printEventList() {
@@ -77,16 +83,19 @@ public class Output {
         if (eventService.isConditionGift()) {
             System.out.println(outputHandler.getNoticeEventMessage(EVENT_NAME_GIFT, GIFT_DISCOUNT_VALUE.get()));
         }
+        System.out.println();
     }
 
     private void printTotalEventPrice() {
         System.out.println(HEADER_TOTAL_EVENT_PRICE.get());
         System.out.println(outputHandler.getNoticeEventPriceMessage(eventService.totalEventPrice()));
+        System.out.println();
     }
 
     private void printTotalPriceAfterEvent() {
         System.out.println(HEADER_TOTAL_PRICE_AFTER_EVENT.get());
         System.out.println(outputHandler.getNoticePriceMessage(eventService.totalPrice()));
+        System.out.println();
     }
 
     private void printBadge() {

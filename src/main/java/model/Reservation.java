@@ -26,7 +26,7 @@ public class Reservation {
     }
 
     public void setVisitDate(int visitDay) {
-        this.visitDate = LocalDate.of(2024, 12, visitDay);
+        this.visitDate = LocalDate.of(2023, 12, visitDay);
     }
 
     public void addOrder(Order order) {
@@ -38,11 +38,12 @@ public class Reservation {
     }
 
     private int getWeekEventPrice(Order order) {
-        return WeekEvent.getWeekEventPrice(getDayOfWeek(), order.getMenuGroup());
+        int value = WeekEvent.getWeekEventPrice(getDayOfWeek(), order.getMenuGroup());
+        return value * order.getQuantity();
     }
 
     public OutputMessage getWeekEventKind() {
-        Optional<WeekEvent> weekEvent = WeekEvent.getWeekEventKind(getDayOfWeek());
+        WeekEvent weekEvent = WeekEvent.getWeekEventKind(getDayOfWeek());
         if(weekEvent.equals(WeekEvent.WEEKDAY)) {
             return EVENT_NAME_WEEKDAY;
         }
@@ -85,7 +86,7 @@ public class Reservation {
 
     public boolean isRange(LocalDate startDate, LocalDate endDate) {
         return (visitDate.isEqual(startDate) || visitDate.isAfter(startDate)) &&
-                (visitDate.isEqual(endDate) || visitDate.isAfter(endDate));
+                (visitDate.isEqual(endDate) || visitDate.isBefore(endDate));
     }
 
     public int calcaulateUntilChristmasDate(LocalDate startDate) {

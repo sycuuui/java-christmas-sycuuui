@@ -28,7 +28,7 @@ public class EventService {
     private int calculateChristmasDayEventPrice() {
         int untilChristmasDate = reservation.calcaulateUntilChristmasDate(CHRISTMAS_DAY_SALE_STARTDATE.get());
 
-        return CHRISTMAS_DAY_INIT_VALUE.get() + untilChristmasDate * CHRISTMAS_DAY_UNIT.get();
+        return CHRISTMAS_DAY_INIT_VALUE.get() + (untilChristmasDate * CHRISTMAS_DAY_UNIT.get());
     }
 
     public boolean isConditionGift() {
@@ -50,6 +50,6 @@ public class EventService {
     }
 
     public int totalPrice() {
-        return reservation.totalOrderPrice() - totalEventPrice();
+        return reservation.totalOrderPrice() - totalEventPrice() + getConditionGiftPrice();
     }
 }

@@ -1,5 +1,7 @@
 package enumerate.menu;
 
+import java.util.Arrays;
+
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", 6000),
     TAPAS("타파스", 5500),
@@ -12,7 +14,8 @@ public enum Menu {
     ICE_CREAM("아이스크림", 5000),
     ZERO_COLA("제로콜라", 3000),
     RED_WINE("레드와인", 60000),
-    CHAMPAGNE("샴페인", 25000);
+    CHAMPAGNE("샴페인", 25000),
+    INVALID("존재하지 않음",0);
 
     private final String name;
     private final int price;
@@ -31,6 +34,9 @@ public enum Menu {
     }
 
     public static Menu findMenuByName(String name) {
-        return Menu.valueOf(name);
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.name.equals(name))
+                .findFirst()
+                .orElse(INVALID);
     }
 }

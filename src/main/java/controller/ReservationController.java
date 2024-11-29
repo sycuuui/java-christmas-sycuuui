@@ -18,6 +18,8 @@ public class ReservationController {
 
     public void run() {
         input.processReservation();
+
+        processResult();
     }
 
     public void processResult() {

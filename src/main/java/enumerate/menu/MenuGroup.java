@@ -22,7 +22,7 @@ public enum MenuGroup {
 
     public static MenuGroup findMenuGroupByMenu(Menu menu) {
         return Arrays.stream(values())
-                .filter(menuGroup -> menuGroup.equals(menu))
+                .filter(menuGroup -> menuGroup.menus.contains(menu))
                 .findFirst()
                 .orElse(INVLID);
     }
