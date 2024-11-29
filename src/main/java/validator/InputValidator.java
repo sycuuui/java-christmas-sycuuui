@@ -80,13 +80,13 @@ public class InputValidator {
     }
 
     private void checkInQuantityRange(Integer value) {
-        if (value < EVENT_MIN_ORDER.getValue()) {
+        if (value < EVENT_MIN_ORDER.get()) {
             throw new CustomException(ErrorMessage.INVALID_ORDER);
         }
     }
 
     private void checkInTotalQuantityRange(int totalQuantity) {
-        if (totalQuantity > EVENT_MAX_ORDER.getValue()) {
+        if (totalQuantity > EVENT_MAX_ORDER.get()) {
             throw new CustomException(ErrorMessage.INVALID_ORDER);
         }
     }

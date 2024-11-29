@@ -13,8 +13,8 @@ import static enumerate.menu.MenuGroup.MAIN;
 import static java.time.DayOfWeek.*;
 
 public enum WeekEvent {
-    WEEKDAY(List.of(SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY), DESSERT, WEEK_DISCOUNT_VALUE.getValue()),
-    WEEKEND(List.of(FRIDAY, SATURDAY), MAIN, WEEK_DISCOUNT_VALUE.getValue());
+    WEEKDAY(List.of(SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY), DESSERT, WEEK_DISCOUNT_VALUE.get()),
+    WEEKEND(List.of(FRIDAY, SATURDAY), MAIN, WEEK_DISCOUNT_VALUE.get());
 
     private final List<DayOfWeek> dayOfWeeks;
     private final MenuGroup menuGroup;
@@ -31,7 +31,7 @@ public enum WeekEvent {
                 .filter(weekEvent -> weekEvent.dayOfWeeks.contains(dayOfWeek) && weekEvent.menuGroup.equals(menuGroup))
                 .findAny()
                 .map(weekEvent -> weekEvent.value)
-                .orElse(NO_EVENT_VALUE.getValue());
+                .orElse(NO_EVENT_VALUE.get());
     }
 
 }
