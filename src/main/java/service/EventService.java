@@ -14,15 +14,15 @@ public class EventService {
         this.reservation = reservation;
     }
 
-    public boolean isAvailableEvent() {
+    public boolean isConditionEvent() {
         return reservation.totalOrderPrice() > EventValue.EVENT_MIN_PRICE.get();
     }
 
     public int getChristmasDayEventPrice() {
-        if (reservation.isRange(CHRISTMAS_DAY_SALE_STARTDATE.get(), CHRISTMAS_DAY_SALE_FINISHDATE.get())) {
+        if (isConditionEvent() && reservation.isRange(CHRISTMAS_DAY_SALE_STARTDATE.get(), CHRISTMAS_DAY_SALE_FINISHDATE.get())) {
             return calculateChristmasDayEventPrice();
         }
-        return 0;
+        return NO_EVENT_VALUE.get();
     }
 
     private int calculateChristmasDayEventPrice() {
@@ -32,7 +32,24 @@ public class EventService {
     }
 
     public boolean isConditionGift() {
-        return reservation.totalOrderPrice() > GIFT_CONDITION_PRICE.get();
+        return isConditionEvent() && (reservation.totalOrderPrice() > GIFT_CONDITION_PRICE.get());
     }
 
+    public int getConditionGiftPrice() {
+        if(isConditionEvent() && isConditionGift()) {
+            return GIFT_DISCOUNT_VALUE.get();
+        }
+        return NO_EVENT_VALUE.get();
+    }
+
+    public int totalEventPrice() {
+        return getChristmasDayEventPrice()
+                + getConditionGiftPrice()
+                + reservation.getSpecialEventPrice()
+                + reservation.getTotalWeekEventPrice();
+    }
+
+    public int totalPrice() {
+        return reservation.totalOrderPrice() - totalEventPrice();
+    }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import enumerate.event.WeekEvent;
+import message.OutputMessage;
 import util.DateUtil;
 
 import java.time.DayOfWeek;
@@ -8,10 +9,12 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static enumerate.event.EventDate.CHRISTMAS_DATE;
 import static enumerate.event.EventValue.NO_EVENT_VALUE;
 import static enumerate.event.EventValue.SPECIAL_DISCOUNT_VALUE;
+import static message.OutputMessage.*;
 
 public class Reservation {
     private LocalDate visitDate;
@@ -36,6 +39,21 @@ public class Reservation {
 
     private int getWeekEventPrice(Order order) {
         return WeekEvent.getWeekEventPrice(getDayOfWeek(), order.getMenuGroup());
+    }
+
+    public OutputMessage getWeekEventKind() {
+        Optional<WeekEvent> weekEvent = WeekEvent.getWeekEventKind(getDayOfWeek());
+        if(weekEvent.equals(WeekEvent.WEEKDAY)) {
+            return EVENT_NAME_WEEKDAY;
+        }
+        if(weekEvent.equals(WeekEvent.WEEKEND)) {
+            return EVENT_NAME_WEEKEND;
+        }
+        return NOTICE_NO_EVENT;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     public int getVisitMonth() {

@@ -5,6 +5,7 @@ import enumerate.menu.MenuGroup;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static enumerate.event.EventValue.NO_EVENT_VALUE;
 import static enumerate.event.EventValue.WEEK_DISCOUNT_VALUE;
@@ -34,4 +35,9 @@ public enum WeekEvent {
                 .orElse(NO_EVENT_VALUE.get());
     }
 
+    public static Optional<WeekEvent> getWeekEventKind(DayOfWeek dayOfWeek) {
+        return Arrays.stream(values())
+                .filter(weekEvent -> weekEvent.dayOfWeeks.contains(dayOfWeek))
+                .findAny();
+    }
 }

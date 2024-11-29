@@ -19,4 +19,12 @@ public class Order {
     public MenuGroup getMenuGroup() {
         return MenuGroup.findMenuGroupByMenu(menu);
     }
+
+    public String getMenuName() {
+        return menu.getName();
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }

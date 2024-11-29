@@ -1,5 +1,6 @@
 package validator;
 
+import enumerate.event.EventDate;
 import enumerate.menu.Menu;
 import exception.CustomException;
 import message.ErrorMessage;
@@ -10,6 +11,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static enumerate.event.EventDate.EVENT_DATE;
+import static enumerate.event.EventDate.EVENT_FINISH_DATE;
 import static enumerate.event.EventValue.*;
 
 public class InputValidator {
@@ -48,7 +51,7 @@ public class InputValidator {
     private void checkInDateRange(String input) {
         int visitDate = Integer.parseInt(input);
 
-        if (!(visitDate >= 1 && visitDate <= 31)) {
+        if (!(visitDate >= EVENT_DATE.get().getDayOfMonth() && visitDate <= EVENT_FINISH_DATE.get().getDayOfMonth())) {
             throw new CustomException(ErrorMessage.INVALID_DATE);
         }
     }
