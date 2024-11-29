@@ -2,7 +2,7 @@ package enumerate.event;
 
 import enumerate.menu.Menu;
 
-public enum EventConstant {
+public enum EventValue {
     CHRISTMAS_DAY_INIT_VALUE(1000),
     CHRISTMAS_DAY_UNIT(100),
     WEEK_DISCOUNT_VALUE(2023),
@@ -16,7 +16,7 @@ public enum EventConstant {
 
     private final int value;
 
-    EventConstant(int value) {
+    EventValue(int value) {
         this.value = value;
     }
 

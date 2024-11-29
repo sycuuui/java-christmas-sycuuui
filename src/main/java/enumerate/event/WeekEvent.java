@@ -6,8 +6,8 @@ import java.time.DayOfWeek;
 import java.util.Arrays;
 import java.util.List;
 
-import static enumerate.event.EventConstant.NO_EVENT_VALUE;
-import static enumerate.event.EventConstant.WEEK_DISCOUNT_VALUE;
+import static enumerate.event.EventValue.NO_EVENT_VALUE;
+import static enumerate.event.EventValue.WEEK_DISCOUNT_VALUE;
 import static enumerate.menu.MenuGroup.DESSERT;
 import static enumerate.menu.MenuGroup.MAIN;
 import static java.time.DayOfWeek.*;

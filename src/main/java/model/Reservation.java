@@ -1,7 +1,5 @@
 package model;
 
-import enumerate.event.EventConstant;
-import enumerate.event.EventDate;
 import enumerate.event.WeekEvent;
 import util.DateUtil;
 
@@ -11,9 +9,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static enumerate.event.EventConstant.NO_EVENT_VALUE;
-import static enumerate.event.EventConstant.SPECIAL_DISCOUNT_VALUE;
-import static enumerate.event.EventDate.CHRISTMAS_DAY;
+import static enumerate.event.EventDate.CHRISTMAS_DATE;
+import static enumerate.event.EventValue.NO_EVENT_VALUE;
+import static enumerate.event.EventValue.SPECIAL_DISCOUNT_VALUE;
 
 public class Reservation {
     private LocalDate visitDate;
@@ -40,6 +38,14 @@ public class Reservation {
         return WeekEvent.getWeekEventPrice(getDayOfWeek(), order.getMenuGroup());
     }
 
+    public int getVisitMonth() {
+        return visitDate.getMonthValue();
+    }
+
+    public int getVisitDay() {
+        return visitDate.getDayOfMonth();
+    }
+
     public int getTotalWeekEventPrice() {
         return orders.stream()
                 .mapToInt(this::getWeekEventPrice)
@@ -47,7 +53,7 @@ public class Reservation {
     }
 
     public int getSpecialEventPrice() {
-        if (getDayOfWeek() == DayOfWeek.SUNDAY || CHRISTMAS_DAY.isChristmasDay(visitDate)) {
+        if (getDayOfWeek() == DayOfWeek.SUNDAY || CHRISTMAS_DATE.isChristmasDay(visitDate)) {
             return SPECIAL_DISCOUNT_VALUE.get();
         }
         return NO_EVENT_VALUE.get();

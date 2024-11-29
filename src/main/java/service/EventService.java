@@ -1,9 +1,9 @@
 package service;
 
-import enumerate.event.EventConstant;
+import enumerate.event.EventValue;
 import model.Reservation;
 
-import static enumerate.event.EventConstant.*;
+import static enumerate.event.EventValue.*;
 import static enumerate.event.EventDate.CHRISTMAS_DAY_SALE_FINISHDATE;
 import static enumerate.event.EventDate.CHRISTMAS_DAY_SALE_STARTDATE;
 
@@ -15,7 +15,7 @@ public class EventService {
     }
 
     public boolean isAvailableEvent() {
-        return reservation.totalOrderPrice() > EventConstant.EVENT_MIN_PRICE.get();
+        return reservation.totalOrderPrice() > EventValue.EVENT_MIN_PRICE.get();
     }
 
     public int getChristmasDayEventPrice() {

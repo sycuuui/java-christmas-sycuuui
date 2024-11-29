@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static enumerate.event.EventConstant.*;
+import static enumerate.event.EventValue.*;
 
 public class InputValidator {
     public void validatorVisitDate(String input) {
